@@ -20,6 +20,7 @@ import argparse
 import html
 import json
 import os
+import shutil
 import subprocess
 import sys
 from datetime import datetime
@@ -176,6 +177,8 @@ def build_site(description: str, page_url: str | None, qr_relpath: str | None) -
         if BITACORA.exists() else "Aun no hay entradas."
     )
     tree_image = find_tree_image()
+    if tree_image:
+        shutil.copy(ROOT / tree_image, DOCS / tree_image)
     tree_section = (
         f'<img src="{tree_image}" alt="Arbol del proceso" class="tree-img">'
         if tree_image else
