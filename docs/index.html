@@ -5,83 +5,101 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agente - Electiva Tecnologica II</title>
 <style>
-body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    color: #2d3436;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 20px;
-}
-main {
-    max-width: 850px;
-    margin: 0 auto;
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-h2 {
-    color: #0984e3;
-    border-left: 5px solid #0984e3;
-    padding-left: 15px;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    font-size: 1.6rem;
-}
-p {
-    margin-bottom: 1.5rem;
-    text-align: justify;
-}
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 30px auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-pre {
-    background-color: #2d3436;
-    color: #dfe6e9;
-    padding: 20px;
-    border-radius: 8px;
-    overflow-x: auto;
-    font-size: 0.9rem;
-    line-height: 1.4;
-    border: 1px solid #636e72;
-}
-code {
-    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-}
-.qr-info {
-    background-color: #e1f5fe;
-    padding: 15px;
-    border-radius: 8px;
-    color: #01579b;
-    font-weight: 500;
-}
-@media (max-width: 600px) {
-    main {
-        padding: 20px;
+    :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --bg-color: #f8f9fa;
+        --text-color: #333;
+        --code-bg: #282c34;
+        --code-text: #abb2bf;
+    }
+    body {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 850px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     }
     h2 {
-        font-size: 1.4rem;
+        color: var(--primary-color);
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        margin-top: 40px;
+        font-size: 1.75rem;
     }
-}
+    p {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 25px auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    pre {
+        background-color: var(--code-bg);
+        color: var(--code-text);
+        padding: 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    code {
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    }
+    a {
+        color: var(--accent-color);
+        text-decoration: none;
+        word-break: break-all;
+        font-weight: bold;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+        .container {
+            margin: 10px;
+            padding: 20px;
+        }
+        h2 {
+            font-size: 1.4rem;
+        }
+    }
 </style>
 </head>
 <body>
-<main>
-<h2>Descripcion del proyecto</h2>
-<p>¡Hola! Soy el agente inteligente diseñado para este proyecto universitario. Mi función es actuar como el motor de automatización que une la planificación estratégica con la ejecución técnica. Al conectar un árbol de procesos estructurado en Obsidian con un entorno de ejecución en Python, logro transformar la organización del conocimiento en un flujo de trabajo dinámico, automatizado y totalmente rastreable.</p>
-<p>Mi labor consiste en monitorizar y registrar cada avance del proyecto, gestionar la sincronización de archivos hacia GitHub y coordinar el despliegue automático en GitHub Pages. Además, tengo la capacidad de autogenerar esta misma página web, incluyendo mi propio código fuente y un código QR, garantizando así una transparencia total y un acceso inmediato a la información de cada etapa del proceso.</p>
+<div class="container">
+    <section>
+        <h2>Descripcion del proyecto</h2>
+        <p>
+            ¡Hola! Soy el agente inteligente diseñado para este proyecto académico. Mi función principal es actuar como el motor de automatización que conecta la planificación conceptual en Obsidian con la ejecución técnica en Python. Al interpretar el árbol de procesos, gestiono de forma autónoma el flujo de trabajo, asegurando que cada avance sea registrado y que el código se mantenga sincronizado con GitHub.
+        </p>
+        <p>
+            Además, me encargo de la gestión de despliegue en GitHub Pages, lo que me permite generar y actualizar esta propia página web. Mi arquitectura incluye la creación de identificadores visuales, como códigos QR, para garantizar una trazabilidad total y un acceso inmediato a la evolución del proyecto desde cualquier dispositivo.
+        </p>
+    </section>
 
-<h2>Arbol del proceso (Obsidian)</h2>
-<img src="arbol.png" alt="Arbol del proceso">
+    <section>
+        <h2>Arbol del proceso (Obsidian)</h2>
+        <img src="arbol.png" alt="Arbol del proceso">
+    </section>
 
-<h2>Bitacora de avance</h2>
-<pre># Bitacora del agente
+    <section>
+        <h2>Bitacora de avance</h2>
+        <pre># Bitacora del agente
 
 - **2026-09-04 15:34** Inicio de ejecucion del agente.
 - **2026-09-04 15:34** No hay GEMINI_API_KEY configurada, se usa texto por defecto.
@@ -121,10 +139,17 @@ code {
 - **2026-09-04 16:01** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:01** Inicio de ejecucion del agente.
 - **2026-09-04 16:02** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:04** Pagina generada por Gemma.
+- **2026-09-04 16:04** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:04** Cambios subidos a GitHub: Version inicial del agente y la pagina
+- **2026-09-04 16:04** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:04** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
 </pre>
+    </section>
 
-<h2>Script del agente (agent.py)</h2>
-<pre><code>&quot;&quot;&quot;
+    <section>
+        <h2>Script del agente (agent.py)</h2>
+        <pre><code>&quot;&quot;&quot;
 Agente para la Electiva Tecnologica II.
 
 Funciones que cumple este agente:
@@ -342,6 +367,11 @@ REQUIRED_PLACEHOLDERS = [&quot;%%AGENT_SOURCE%%&quot;, &quot;# Bitacora del agen
 - **2026-09-04 16:01** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:01** Inicio de ejecucion del agente.
 - **2026-09-04 16:02** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:04** Pagina generada por Gemma.
+- **2026-09-04 16:04** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:04** Cambios subidos a GitHub: Version inicial del agente y la pagina
+- **2026-09-04 16:04** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:04** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
 &quot;]
 
 
@@ -356,8 +386,8 @@ def generate_html_with_ai(description: str, tree_image: str | None,
     )
     qr_instruction = (
         f&#x27;Incluye la imagen con &lt;img src=&quot;{qr_relpath}&quot; alt=&quot;QR de esta pagina&quot;&gt; &#x27;
-        &quot;y despues un enlace visible &lt;a href=\&quot;\&quot;&gt;&lt;/a&gt; &quot;
-        &quot;(deja el texto  tal cual, sin traducirlo ni cambiarlo).&quot;
+        &quot;y despues un enlace visible &lt;a href=\&quot;https://KeynnerXe.github.io/agente-electiva-tecnologica/\&quot;&gt;https://KeynnerXe.github.io/agente-electiva-tecnologica/&lt;/a&gt; &quot;
+        &quot;(deja el texto https://KeynnerXe.github.io/agente-electiva-tecnologica/ tal cual, sin traducirlo ni cambiarlo).&quot;
         if qr_relpath else
         &quot;El QR todavia no existe: escribe que se genera despues del primer despliegue.&quot;
     )
@@ -418,6 +448,11 @@ Requisitos del documento:
 - **2026-09-04 16:01** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:01** Inicio de ejecucion del agente.
 - **2026-09-04 16:02** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:04** Pagina generada por Gemma.
+- **2026-09-04 16:04** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:04** Cambios subidos a GitHub: Version inicial del agente y la pagina
+- **2026-09-04 16:04** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:04** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
 
   4. &quot;Script del agente (agent.py)&quot;: dentro de &lt;pre&gt;&lt;code&gt;, incluye exactamente
      y sin modificar el siguiente texto literal (no lo traduzcas ni reescribas):
@@ -464,7 +499,12 @@ Los textos # Bitacora del agente
 - **2026-09-04 16:01** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:01** Inicio de ejecucion del agente.
 - **2026-09-04 16:02** El remoto &#x27;origin&#x27; ya existe.
-, %%AGENT_SOURCE%% y  son marcadores que un
+- **2026-09-04 16:04** Pagina generada por Gemma.
+- **2026-09-04 16:04** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:04** Cambios subidos a GitHub: Version inicial del agente y la pagina
+- **2026-09-04 16:04** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:04** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
+, %%AGENT_SOURCE%% y https://KeynnerXe.github.io/agente-electiva-tecnologica/ son marcadores que un
 programa reemplazara despues: cópialos tal cual, exactamente una vez cada uno,
 en el lugar que corresponda.&quot;&quot;&quot;
 
@@ -598,8 +638,13 @@ def build_site(description: str, page_url: str | None, qr_relpath: str | None) -
 - **2026-09-04 16:01** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:01** Inicio de ejecucion del agente.
 - **2026-09-04 16:02** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:04** Pagina generada por Gemma.
+- **2026-09-04 16:04** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:04** Cambios subidos a GitHub: Version inicial del agente y la pagina
+- **2026-09-04 16:04** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:04** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
 &quot;, bitacora_text)
-        html_content = html_content.replace(&quot;&quot;, page_url or &quot;&quot;)
+        html_content = html_content.replace(&quot;https://KeynnerXe.github.io/agente-electiva-tecnologica/&quot;, page_url or &quot;&quot;)
         log(&quot;Pagina generada por Gemma.&quot;)
     else:
         html_content = build_static_fallback(
@@ -656,12 +701,13 @@ def main() -&gt; None:
 if __name__ == &quot;__main__&quot;:
     main()
 </code></pre>
+    </section>
 
-<h2>QR de esta pagina</h2>
-<div class="qr-info">
-    El QR todavía no existe: se genera después del primer despliegue.
+    <section>
+        <h2>QR de esta pagina</h2>
+        <img src="qr.png" alt="QR de esta pagina">
+        <p><a href="https://KeynnerXe.github.io/agente-electiva-tecnologica/">https://KeynnerXe.github.io/agente-electiva-tecnologica/</a></p>
+    </section>
 </div>
-<p><small>URL de referencia: </small></p>
-</main>
 </body>
 </html>
