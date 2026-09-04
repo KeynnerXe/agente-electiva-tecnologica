@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Agente - Electiva Tecnologica II</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 900px; margin: 40px auto;
+         padding: 0 20px; line-height: 1.6; color: #1a1a1a; }
+  h1, h2 { color: #10467a; }
+  pre { background: #0d1117; color: #c9d1d9; padding: 16px; overflow-x: auto;
+         border-radius: 8px; font-size: 13px; }
+  .tree-img, .qr-img { max-width: 320px; display: block; margin: 12px 0; }
+  section { margin-bottom: 40px; }
+</style>
+</head>
+<body>
+<h1>Agente de la Electiva Tecnologica II</h1>
+
+<section>
+<h2>Descripcion del proyecto</h2>
+<p>Este proyecto universitario vincula un árbol de procesos de Obsidian con un agente de Python automatizado. Este gestiona el registro de avances, la subida a GitHub y el despliegue en GitHub Pages, generando además una página web que muestra su propio código fuente y un código QR para facilitar un acceso rápido y dinámico.</p>
+</section>
+
+<section>
+<h2>Arbol del proceso (Obsidian)</h2>
+<p>(Coloca aqui un export de tu arbol de Obsidian como <code>arbol.png</code> en la raiz del proyecto y vuelve a correr el agente.)</p>
+</section>
+
+<section>
+<h2>Bitacora de avance</h2>
+<pre># Bitacora del agente
+
+- **2026-09-04 15:34** Inicio de ejecucion del agente.
+- **2026-09-04 15:34** No hay GEMINI_API_KEY configurada, se usa texto por defecto.
+- **2026-09-04 15:34** Pagina web generada en docs/index.html.
+- **2026-09-04 15:37** Inicio de ejecucion del agente.
+- **2026-09-04 15:37** No hay GEMINI_API_KEY configurada, se usa texto por defecto.
+- **2026-09-04 15:37** Pagina web generada en docs/index.html.
+- **2026-09-04 15:42** Inicio de ejecucion del agente.
+- **2026-09-04 15:43** Pagina web generada en docs/index.html.
+- **2026-09-04 15:44** Inicio de ejecucion del agente.
+- **2026-09-04 15:45** Repositorio git inicializado.
+- **2026-09-04 15:45** Repositorio &#x27;agente-electiva-tecnologica&#x27; creado en GitHub.
+</pre>
+</section>
+
+<section>
+<h2>Script del agente (agent.py)</h2>
+<pre><code>&quot;&quot;&quot;
+Agente para la Electiva Tecnologica II.
+
+Funciones que cumple este agente:
+  1. Llevar una bitacora de avance del proyecto (bitacora.md).
+  2. Consultar a Gemini (API de Google AI Studio) para redactar la
+     descripcion del proyecto.
+  3. Inicializar el repositorio, crearlo en GitHub y subir los cambios.
+  4. Desplegar el proyecto en GitHub Pages.
+  5. Generar la pagina web final (docs/index.html) con la informacion
+     del proyecto y su propio script.
+  6. Generar el codigo QR que apunta a la pagina ya desplegada.
+
+Uso:
+    python agent.py            -&gt; ejecuta el flujo completo
+    python agent.py --dry-run  -&gt; genera la pagina localmente, sin git/GitHub
+&quot;&quot;&quot;
+
+import argparse
+import html
+import json
+import os
+import subprocess
+import sys
+from datetime import datetime
+from pathlib import Path
+
+from dotenv import load_dotenv
+from google import genai
+from google.genai import types
+
+ROOT = Path(__file__).resolve().parent
+DOCS = ROOT / &quot;docs&quot;
+BITACORA = ROOT / &quot;bitacora.md&quot;
+AGENT_SOURCE = Path(__file__)
+TREE_IMAGE_CANDIDATES = [&quot;arbol.png&quot;, &quot;arbol.jpg&quot;, &quot;arbol.svg&quot;]
+
+load_dotenv(ROOT / &quot;.env&quot;)
+
+GEMINI_API_KEY = os.getenv(&quot;GEMINI_API_KEY&quot;, &quot;&quot;)
+GEMINI_MODEL = os.getenv(&quot;GEMINI_MODEL&quot;, &quot;gemma-4-26b-a4b-it&quot;)
+DEFAULT_DESCRIPTION = (
+    &quot;Este proyecto conecta un arbol de proceso construido en Obsidian &quot;
+    &quot;con un agente que automatiza el registro de avances, la subida a &quot;
+    &quot;GitHub, el despliegue en GitHub Pages y la generacion de esta pagina.&quot;
+)
+_client = None
+
+
+def get_client() -&gt; genai.Client:
+    global _client
+    if _client is None:
+        _client = genai.Client(api_key=GEMINI_API_KEY)
+    return _client
+GITHUB_REPO_NAME = os.getenv(&quot;GITHUB_REPO_NAME&quot;, &quot;agente-electiva-tecnologica&quot;)
+REPO_VISIBILITY = os.getenv(&quot;REPO_VISIBILITY&quot;, &quot;public&quot;)
+
+
+def log(message: str) -&gt; None:
+    &quot;&quot;&quot;Registra un avance en bitacora.md y lo imprime en consola.&quot;&quot;&quot;
+    timestamp = datetime.now().strftime(&quot;%Y-%m-%d %H:%M&quot;)
+    line = f&quot;- **{timestamp}** {message}\n&quot;
+    if not BITACORA.exists():
+        BITACORA.write_text(&quot;# Bitacora del agente\n\n&quot;, encoding=&quot;utf-8&quot;)
+    with BITACORA.open(&quot;a&quot;, encoding=&quot;utf-8&quot;) as f:
+        f.write(line)
+    print(f&quot;[bitacora] {message}&quot;)
+
+
+def run_cmd(cmd: list[str], cwd: Path = ROOT, check: bool = True) -&gt; str:
+    &quot;&quot;&quot;Ejecuta un comando de shell y devuelve su salida.&quot;&quot;&quot;
+    result = subprocess.run(
+        cmd, cwd=cwd, capture_output=True, text=True, shell=False
+    )
+    if check and result.returncode != 0:
+        raise RuntimeError(
+            f&quot;Fallo el comando {&#x27; &#x27;.join(cmd)}:\n{result.stdout}\n{result.stderr}&quot;
+        )
+    return result.stdout.strip()
+
+
+def ask_gemini(prompt: str) -&gt; str:
+    &quot;&quot;&quot;Envia un prompt a Gemma (via el SDK google-genai) y devuelve el texto de respuesta.&quot;&quot;&quot;
+    if not GEMINI_API_KEY:
+        log(&quot;No hay GEMINI_API_KEY configurada, se usa texto por defecto.&quot;)
+        return DEFAULT_DESCRIPTION
+
+    try:
+        client = get_client()
+        response = client.models.generate_content(
+            model=GEMINI_MODEL,
+            contents=[
+                types.Content(
+                    role=&quot;user&quot;,
+                    parts=[types.Part.from_text(text=prompt)],
+                ),
+            ],
+        )
+        return response.text.strip()
+    except Exception as exc:
+        log(f&quot;Fallo la llamada a Gemma ({exc}), se usa texto por defecto.&quot;)
+        return DEFAULT_DESCRIPTION
+
+
+def ensure_git_repo() -&gt; None:
+    if not (ROOT / &quot;.git&quot;).exists():
+        run_cmd([&quot;git&quot;, &quot;init&quot;])
+        run_cmd([&quot;git&quot;, &quot;branch&quot;, &quot;-M&quot;, &quot;main&quot;])
+        log(&quot;Repositorio git inicializado.&quot;)
+
+
+def ensure_github_remote() -&gt; str:
+    &quot;&quot;&quot;Crea el repo en GitHub (si no existe) y devuelve el usuario dueno.&quot;&quot;&quot;
+    try:
+        run_cmd([&quot;git&quot;, &quot;remote&quot;, &quot;get-url&quot;, &quot;origin&quot;])
+        log(&quot;El remoto &#x27;origin&#x27; ya existe.&quot;)
+    except RuntimeError:
+        visibility_flag = &quot;--public&quot; if REPO_VISIBILITY == &quot;public&quot; else &quot;--private&quot;
+        run_cmd(
+            [
+                &quot;gh&quot;, &quot;repo&quot;, &quot;create&quot;, GITHUB_REPO_NAME,
+                visibility_flag, &quot;--source=.&quot;, &quot;--remote=origin&quot;,
+            ]
+        )
+        log(f&quot;Repositorio &#x27;{GITHUB_REPO_NAME}&#x27; creado en GitHub.&quot;)
+
+    owner = run_cmd([&quot;gh&quot;, &quot;api&quot;, &quot;user&quot;, &quot;-q&quot;, &quot;.login&quot;])
+    return owner
+
+
+def commit_and_push(message: str) -&gt; None:
+    run_cmd([&quot;git&quot;, &quot;add&quot;, &quot;-A&quot;])
+    diff = run_cmd([&quot;git&quot;, &quot;diff&quot;, &quot;--cached&quot;, &quot;--name-only&quot;], check=False)
+    if not diff:
+        log(&quot;No hay cambios nuevos para commitear.&quot;)
+        return
+    run_cmd([&quot;git&quot;, &quot;commit&quot;, &quot;-m&quot;, message])
+    run_cmd([&quot;git&quot;, &quot;push&quot;, &quot;-u&quot;, &quot;origin&quot;, &quot;main&quot;])
+    log(f&quot;Cambios subidos a GitHub: {message}&quot;)
+
+
+def enable_github_pages(owner: str) -&gt; str:
+    &quot;&quot;&quot;Activa GitHub Pages sirviendo la carpeta docs/ y devuelve la URL final.&quot;&quot;&quot;
+    repo_path = f&quot;repos/{owner}/{GITHUB_REPO_NAME}/pages&quot;
+    try:
+        run_cmd([&quot;gh&quot;, &quot;api&quot;, &quot;-X&quot;, &quot;POST&quot;, repo_path,
+                  &quot;-f&quot;, &quot;source[branch]=main&quot;, &quot;-f&quot;, &quot;source[path]=/docs&quot;])
+        log(&quot;GitHub Pages activado (POST).&quot;)
+    except RuntimeError:
+        try:
+            run_cmd([&quot;gh&quot;, &quot;api&quot;, &quot;-X&quot;, &quot;PUT&quot;, repo_path,
+                      &quot;-f&quot;, &quot;source[branch]=main&quot;, &quot;-f&quot;, &quot;source[path]=/docs&quot;])
+            log(&quot;GitHub Pages actualizado (PUT).&quot;)
+        except RuntimeError as exc:
+            log(&quot;No se pudo activar Pages automaticamente, hazlo manual en &quot;
+                &quot;Settings &gt; Pages (branch: main, carpeta: /docs).&quot;)
+            print(exc)
+
+    return f&quot;https://{owner}.github.io/{GITHUB_REPO_NAME}/&quot;
+
+
+def find_tree_image() -&gt; str | None:
+    for name in TREE_IMAGE_CANDIDATES:
+        if (ROOT / name).exists():
+            return name
+    return None
+
+
+def build_site(description: str, page_url: str | None, qr_relpath: str | None) -&gt; None:
+    &quot;&quot;&quot;Genera docs/index.html con la info del proyecto y el codigo del agente.&quot;&quot;&quot;
+    DOCS.mkdir(exist_ok=True)
+
+    source_code = html.escape(AGENT_SOURCE.read_text(encoding=&quot;utf-8&quot;))
+    bitacora_text = (
+        html.escape(BITACORA.read_text(encoding=&quot;utf-8&quot;))
+        if BITACORA.exists() else &quot;Aun no hay entradas.&quot;
+    )
+    tree_image = find_tree_image()
+    tree_section = (
+        f&#x27;&lt;img src=&quot;{tree_image}&quot; alt=&quot;Arbol del proceso&quot; class=&quot;tree-img&quot;&gt;&#x27;
+        if tree_image else
+        &quot;&lt;p&gt;(Coloca aqui un export de tu arbol de Obsidian como &quot;
+        &quot;&lt;code&gt;arbol.png&lt;/code&gt; en la raiz del proyecto y vuelve a correr el agente.)&lt;/p&gt;&quot;
+    )
+    qr_section = (
+        f&#x27;&lt;img src=&quot;{qr_relpath}&quot; alt=&quot;QR de esta pagina&quot; class=&quot;qr-img&quot;&gt;&#x27;
+        f&#x27;&lt;p&gt;&lt;a href=&quot;{page_url}&quot;&gt;{page_url}&lt;/a&gt;&lt;/p&gt;&#x27;
+        if qr_relpath and page_url else
+        &quot;&lt;p&gt;El QR se genera despues del primer despliegue.&lt;/p&gt;&quot;
+    )
+
+    html_content = f&quot;&quot;&quot;&lt;!doctype html&gt;
+&lt;html lang=&quot;es&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;title&gt;Agente - Electiva Tecnologica II&lt;/title&gt;
+&lt;style&gt;
+  body {{ font-family: system-ui, sans-serif; max-width: 900px; margin: 40px auto;
+         padding: 0 20px; line-height: 1.6; color: #1a1a1a; }}
+  h1, h2 {{ color: #10467a; }}
+  pre {{ background: #0d1117; color: #c9d1d9; padding: 16px; overflow-x: auto;
+         border-radius: 8px; font-size: 13px; }}
+  .tree-img, .qr-img {{ max-width: 320px; display: block; margin: 12px 0; }}
+  section {{ margin-bottom: 40px; }}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Agente de la Electiva Tecnologica II&lt;/h1&gt;
+
+&lt;section&gt;
+&lt;h2&gt;Descripcion del proyecto&lt;/h2&gt;
+&lt;p&gt;{html.escape(description)}&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;h2&gt;Arbol del proceso (Obsidian)&lt;/h2&gt;
+{tree_section}
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;h2&gt;Bitacora de avance&lt;/h2&gt;
+&lt;pre&gt;{bitacora_text}&lt;/pre&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;h2&gt;Script del agente (agent.py)&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;{source_code}&lt;/code&gt;&lt;/pre&gt;
+&lt;/section&gt;
+
+&lt;section&gt;
+&lt;h2&gt;QR de esta pagina&lt;/h2&gt;
+{qr_section}
+&lt;/section&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+&quot;&quot;&quot;
+    (DOCS / &quot;index.html&quot;).write_text(html_content, encoding=&quot;utf-8&quot;)
+    log(&quot;Pagina web generada en docs/index.html.&quot;)
+
+
+def generate_qr(url: str) -&gt; str:
+    import qrcode
+    img = qrcode.make(url)
+    img.save(DOCS / &quot;qr.png&quot;)
+    log(f&quot;QR generado apuntando a {url}.&quot;)
+    return &quot;qr.png&quot;
+
+
+def main() -&gt; None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(&quot;--dry-run&quot;, action=&quot;store_true&quot;,
+                         help=&quot;Genera la pagina localmente sin tocar git/GitHub.&quot;)
+    args = parser.parse_args()
+
+    log(&quot;Inicio de ejecucion del agente.&quot;)
+
+    description = ask_gemini(
+        &quot;Redacta en un parrafo (maximo 60 palabras) la descripcion de un &quot;
+        &quot;proyecto universitario que conecta un arbol de proceso hecho en &quot;
+        &quot;Obsidian con un agente automatizado en Python que registra avances, &quot;
+        &quot;sube el proyecto a GitHub, lo despliega en GitHub Pages y genera &quot;
+        &quot;una pagina con su propio codigo y un QR.&quot;
+    )
+
+    if args.dry_run:
+        build_site(description, page_url=None, qr_relpath=None)
+        print(&quot;\nListo (dry-run). Abre docs/index.html en tu navegador.&quot;)
+        return
+
+    ensure_git_repo()
+    owner = ensure_github_remote()
+    build_site(description, page_url=None, qr_relpath=None)
+    commit_and_push(&quot;Version inicial del agente y la pagina&quot;)
+    page_url = enable_github_pages(owner)
+
+    qr_relpath = generate_qr(page_url)
+    build_site(description, page_url=page_url, qr_relpath=qr_relpath)
+    commit_and_push(&quot;Agrega QR apuntando a la pagina desplegada&quot;)
+
+    print(f&quot;\nListo. En unos minutos tu pagina estara en: {page_url}&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+</section>
+
+<section>
+<h2>QR de esta pagina</h2>
+<p>El QR se genera despues del primer despliegue.</p>
+</section>
+
+</body>
+</html>
