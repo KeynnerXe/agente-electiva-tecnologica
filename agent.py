@@ -167,18 +167,75 @@ def find_tree_image() -> str | None:
     return None
 
 
-def build_site(description: str, page_url: str | None, qr_relpath: str | None) -> None:
-    """Genera docs/index.html con la info del proyecto y el codigo del agente."""
-    DOCS.mkdir(exist_ok=True)
+def strip_code_fences(text: str) -> str:
+    text = text.strip()
+    if text.startswith("```"):
+        text = text.split("\n", 1)[1] if "\n" in text else ""
+        if text.rstrip().endswith("```"):
+            text = text.rstrip()[:-3]
+    return text.strip()
 
-    source_code = html.escape(AGENT_SOURCE.read_text(encoding="utf-8"))
-    bitacora_text = (
-        html.escape(BITACORA.read_text(encoding="utf-8"))
-        if BITACORA.exists() else "Aun no hay entradas."
+
+REQUIRED_PLACEHOLDERS = ["%%AGENT_SOURCE%%", "%%BITACORA%%"]
+
+
+def generate_html_with_ai(description: str, tree_image: str | None,
+                           qr_relpath: str | None, page_url: str | None) -> str | None:
+    """Le pide a Gemma que redacte y arme la pagina web completa."""
+    tree_instruction = (
+        f'Incluye la imagen con <img src="{tree_image}" alt="Arbol del proceso">.'
+        if tree_image else
+        "Todavia no hay imagen del arbol: escribe un aviso pidiendo exportar "
+        "el arbol de Obsidian como arbol.png."
     )
-    tree_image = find_tree_image()
-    if tree_image:
-        shutil.copy(ROOT / tree_image, DOCS / tree_image)
+    qr_instruction = (
+        f'Incluye la imagen con <img src="{qr_relpath}" alt="QR de esta pagina"> '
+        "y despues un enlace visible <a href=\"%%PAGE_URL%%\">%%PAGE_URL%%</a> "
+        "(deja el texto %%PAGE_URL%% tal cual, sin traducirlo ni cambiarlo)."
+        if qr_relpath else
+        "El QR todavia no existe: escribe que se genera despues del primer despliegue."
+    )
+
+    prompt = f"""Eres el propio agente de software de un proyecto universitario y
+debes redactar tu pagina web de presentacion en un unico archivo HTML.
+
+Devuelve UNICAMENTE el codigo HTML completo (empezando en <!doctype html>),
+sin explicaciones, sin comentarios y sin usar bloques de markdown (```).
+
+Requisitos del documento:
+- Idioma: espanol. Titulo de la pestana: "Agente - Electiva Tecnologica II".
+- CSS dentro de un <style> en el <head>, sin librerias ni CDNs externos.
+- Diseno limpio y profesional, responsive, con buen contraste de color.
+- Debe tener estas secciones, en este orden, cada una con su <h2>:
+  1. "Descripcion del proyecto": redacta un par de parrafos amigables a partir
+     de esta idea: {description}
+  2. "Arbol del proceso (Obsidian)": {tree_instruction}
+  3. "Bitacora de avance": dentro de un <pre>, incluye exactamente y sin
+     modificar el siguiente texto literal (no lo traduzcas ni resumas):
+     %%BITACORA%%
+  4. "Script del agente (agent.py)": dentro de <pre><code>, incluye exactamente
+     y sin modificar el siguiente texto literal (no lo traduzcas ni reescribas):
+     %%AGENT_SOURCE%%
+  5. "QR de esta pagina": {qr_instruction}
+
+Los textos %%BITACORA%%, %%AGENT_SOURCE%% y %%PAGE_URL%% son marcadores que un
+programa reemplazara despues: cópialos tal cual, exactamente una vez cada uno,
+en el lugar que corresponda."""
+
+    raw = ask_gemini(prompt)
+    if raw == DEFAULT_DESCRIPTION:
+        return None
+
+    raw = strip_code_fences(raw)
+    if not all(p in raw for p in REQUIRED_PLACEHOLDERS):
+        log("La pagina generada por Gemma no incluyo los marcadores esperados, se usa la plantilla de respaldo.")
+        return None
+    return raw
+
+
+def build_static_fallback(description: str, tree_image: str | None,
+                           qr_relpath: str | None, page_url: str | None,
+                           source_code: str, bitacora_text: str) -> str:
     tree_section = (
         f'<img src="{tree_image}" alt="Arbol del proceso" class="tree-img">'
         if tree_image else
@@ -191,8 +248,7 @@ def build_site(description: str, page_url: str | None, qr_relpath: str | None) -
         if qr_relpath and page_url else
         "<p>El QR se genera despues del primer despliegue.</p>"
     )
-
-    html_content = f"""<!doctype html>
+    return f"""<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
@@ -238,8 +294,35 @@ def build_site(description: str, page_url: str | None, qr_relpath: str | None) -
 </body>
 </html>
 """
+
+
+def build_site(description: str, page_url: str | None, qr_relpath: str | None) -> None:
+    """Le pide a la IA que genere docs/index.html; si falla, usa una plantilla fija."""
+    DOCS.mkdir(exist_ok=True)
+
+    source_code = html.escape(AGENT_SOURCE.read_text(encoding="utf-8"))
+    bitacora_text = (
+        html.escape(BITACORA.read_text(encoding="utf-8"))
+        if BITACORA.exists() else "Aun no hay entradas."
+    )
+    tree_image = find_tree_image()
+    if tree_image:
+        shutil.copy(ROOT / tree_image, DOCS / tree_image)
+
+    html_content = generate_html_with_ai(description, tree_image, qr_relpath, page_url)
+    if html_content is not None:
+        html_content = html_content.replace("%%AGENT_SOURCE%%", source_code)
+        html_content = html_content.replace("%%BITACORA%%", bitacora_text)
+        html_content = html_content.replace("%%PAGE_URL%%", page_url or "")
+        log("Pagina generada por Gemma.")
+    else:
+        html_content = build_static_fallback(
+            description, tree_image, qr_relpath, page_url, source_code, bitacora_text
+        )
+        log("Pagina generada con la plantilla de respaldo (sin IA).")
+
     (DOCS / "index.html").write_text(html_content, encoding="utf-8")
-    log("Pagina web generada en docs/index.html.")
+    log("Pagina web guardada en docs/index.html.")
 
 
 def generate_qr(url: str) -> str:
