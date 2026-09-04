@@ -1,96 +1,113 @@
 <!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agente - Electiva Tecnologica II</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f4f7f9;
-            color: #2c3e50;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agente - Electiva Tecnologica II</title>
+<style>
+    :root {
+        --primary-color: #1a3a5f;
+        --secondary-color: #2c4a70;
+        --bg-color: #f4f7f9;
+        --text-color: #333333;
+        --card-bg: #ffffff;
+        --code-bg: #282c34;
+        --code-text: #abb2bf;
+    }
+    body {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .container {
+        max-width: 850px;
+        width: 100%;
+        background: var(--card-bg);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        color: var(--primary-color);
+        font-size: 1.8rem;
+        border-bottom: 2px solid #eef2f7;
+        padding-bottom: 10px;
+        margin-top: 40px;
+    }
+    p {
+        margin-bottom: 1.5rem;
+        text-align: justify;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        display: block;
+        margin: 25px auto;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    pre {
+        background-color: var(--code-bg);
+        color: var(--code-text);
+        padding: 20px;
+        border-radius: 10px;
+        overflow-x: auto;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    code {
+        font-family: inherit;
+    }
+    a {
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-weight: bold;
+        word-break: break-all;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    .qr-section {
+        text-align: center;
+        margin-top: 30px;
+    }
+    @media (max-width: 600px) {
         .container {
-            max-width: 850px;
-            margin: 40px auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            padding: 20px;
         }
         h2 {
-            color: #1a3a5f;
-            border-bottom: 2px solid #eef2f7;
-            padding-bottom: 10px;
-            margin-top: 40px;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
         }
-        p {
-            margin-bottom: 1.2rem;
-            font-size: 1.05rem;
-        }
-        pre {
-            background-color: #2d3436;
-            color: #dfe6e9;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-        code {
-            font-family: inherit;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 20px 0;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            display: block;
-        }
-        .qr-section {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px dashed #cbd5e0;
-            text-align: center;
-        }
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-                margin: 10px auto;
-            }
-            h2 {
-                font-size: 1.3rem;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <section>
-            <h2>Descripcion del proyecto</h2>
-            <p>
-                ¡Hola! Soy el agente automatizado diseñado para dar vida a este proyecto universitario. Mi propósito es actuar como un puente inteligente entre la planificación estratégica en un árbol de procesos de Obsidian y la ejecución técnica mediante Python, asegurando que cada avance sea registrado y gestionado con precisión y autonomía.
-            </p>
-            <p>
-                Mi labor principal consiste en automatizar el flujo de trabajo: desde la gestión de versiones en GitHub hasta el despliegue continuo en GitHub Pages. Además, tengo la capacidad de generar esta propia interfaz web, donde expongo mi código fuente y facilito el acceso mediante un código QR, garantizando un ciclo de desarrollo transparente, profesional y altamente eficiente.
-            </p>
-        </section>
+<div class="container">
+    <section>
+        <h2>Descripcion del proyecto</h2>
+        <p>
+            Este proyecto universitario representa una integración avanzada entre la gestión de conocimiento y la automatización de procesos. Mediante el uso de un árbol de procesos estructurado en Obsidian, logramos conectar la planificación lógica con un agente inteligente desarrollado en Python, creando un ecosistema de trabajo fluido y altamente organizado.
+        </p>
+        <p>
+            El agente se encarga de la gestión operativa del proyecto: registra cada avance, automatiza la carga de cambios hacia GitHub y gestiona el despliegue en GitHub Pages. Como parte de su capacidad de autorreferencia, el sistema genera esta misma página web, exponiendo su código fuente y facilitando el acceso inmediato a través de un código QR, cerrando así un ciclo de desarrollo autónomo y transparente.
+        </p>
+    </section>
 
-        <section>
-            <h2>Arbol del proceso (Obsidian)</h2>
-            <img src="arbol.png" alt="Arbol del proceso">
-        </section>
+    <section>
+        <h2>Arbol del proceso (Obsidian)</h2>
+        <img src="arbol.png" alt="Arbol del proceso">
+    </section>
 
-        <section>
-            <h2>Bitacora de avance</h2>
-            <pre># Bitacora del agente
+    <section>
+        <h2>Bitacora de avance</h2>
+        <pre># Bitacora del agente
 
 - **2026-09-04 15:34** Inicio de ejecucion del agente.
 - **2026-09-04 15:34** No hay GEMINI_API_KEY configurada, se usa texto por defecto.
@@ -162,12 +179,27 @@ Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
 - **2026-09-04 16:28** Pagina generada por Gemma.
 - **2026-09-04 16:28** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:28** El remoto &#x27;origin&#x27; ya existe.
-</pre>
-        </section>
+- **2026-09-04 16:28** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:28** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:28** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
+- **2026-09-04 16:30** Pagina generada por Gemma.
+- **2026-09-04 16:30** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:30** Cambios subidos a GitHub: Agrega/actualiza el QR de la pagina desplegada
+- **2026-09-04 16:30** Chat - Usuario dijo: Puedes darle un estilo moderno a la pagina? y automaticamente despliegalo
+- **2026-09-04 16:30** Chat - Agente respondio: ¡Hecho! He aplicado un estilo moderno, minimalista y elegante a la página y ya la he desplegado.
 
-        <section>
-            <h2>Script del agente (agent.py)</h2>
-            <pre><code>&quot;&quot;&quot;
+Puedes ver los cambios aquí: https://KeynnerXe.github.io/agente-electiva-tecnologica/
+- **2026-09-04 16:30** Pagina generada por Gemma.
+- **2026-09-04 16:30** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:30** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:30** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:30** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
+</pre>
+    </section>
+
+    <section>
+        <h2>Script del agente (agent.py)</h2>
+        <pre><code>&quot;&quot;&quot;
 Agente para la Electiva Tecnologica II.
 
 Funciones que cumple este agente:
@@ -426,6 +458,21 @@ Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
 - **2026-09-04 16:28** Pagina generada por Gemma.
 - **2026-09-04 16:28** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:28** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:28** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:28** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:28** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
+- **2026-09-04 16:30** Pagina generada por Gemma.
+- **2026-09-04 16:30** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:30** Cambios subidos a GitHub: Agrega/actualiza el QR de la pagina desplegada
+- **2026-09-04 16:30** Chat - Usuario dijo: Puedes darle un estilo moderno a la pagina? y automaticamente despliegalo
+- **2026-09-04 16:30** Chat - Agente respondio: ¡Hecho! He aplicado un estilo moderno, minimalista y elegante a la página y ya la he desplegado.
+
+Puedes ver los cambios aquí: https://KeynnerXe.github.io/agente-electiva-tecnologica/
+- **2026-09-04 16:30** Pagina generada por Gemma.
+- **2026-09-04 16:30** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:30** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:30** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:30** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
 &quot;]
 
 
@@ -440,8 +487,8 @@ def generate_html_with_ai(description: str, tree_image: str | None,
     )
     qr_instruction = (
         f&#x27;Incluye la imagen con &lt;img src=&quot;{qr_relpath}&quot; alt=&quot;QR de esta pagina&quot;&gt; &#x27;
-        &quot;y despues un enlace visible &lt;a href=\&quot;\&quot;&gt;&lt;/a&gt; &quot;
-        &quot;(deja el texto  tal cual, sin traducirlo ni cambiarlo).&quot;
+        &quot;y despues un enlace visible &lt;a href=\&quot;https://KeynnerXe.github.io/agente-electiva-tecnologica/\&quot;&gt;https://KeynnerXe.github.io/agente-electiva-tecnologica/&lt;/a&gt; &quot;
+        &quot;(deja el texto https://KeynnerXe.github.io/agente-electiva-tecnologica/ tal cual, sin traducirlo ni cambiarlo).&quot;
         if qr_relpath else
         &quot;El QR todavia no existe: escribe que se genera despues del primer despliegue.&quot;
     )
@@ -534,6 +581,21 @@ Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
 - **2026-09-04 16:28** Pagina generada por Gemma.
 - **2026-09-04 16:28** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:28** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:28** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:28** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:28** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
+- **2026-09-04 16:30** Pagina generada por Gemma.
+- **2026-09-04 16:30** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:30** Cambios subidos a GitHub: Agrega/actualiza el QR de la pagina desplegada
+- **2026-09-04 16:30** Chat - Usuario dijo: Puedes darle un estilo moderno a la pagina? y automaticamente despliegalo
+- **2026-09-04 16:30** Chat - Agente respondio: ¡Hecho! He aplicado un estilo moderno, minimalista y elegante a la página y ya la he desplegado.
+
+Puedes ver los cambios aquí: https://KeynnerXe.github.io/agente-electiva-tecnologica/
+- **2026-09-04 16:30** Pagina generada por Gemma.
+- **2026-09-04 16:30** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:30** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:30** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:30** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
 
   4. &quot;Script del agente (agent.py)&quot;: dentro de &lt;pre&gt;&lt;code&gt;, incluye exactamente
      y sin modificar el siguiente texto literal (no lo traduzcas ni reescribas):
@@ -613,7 +675,22 @@ Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
 - **2026-09-04 16:28** Pagina generada por Gemma.
 - **2026-09-04 16:28** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:28** El remoto &#x27;origin&#x27; ya existe.
-, %%AGENT_SOURCE%% y  son marcadores que un
+- **2026-09-04 16:28** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:28** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:28** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
+- **2026-09-04 16:30** Pagina generada por Gemma.
+- **2026-09-04 16:30** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:30** Cambios subidos a GitHub: Agrega/actualiza el QR de la pagina desplegada
+- **2026-09-04 16:30** Chat - Usuario dijo: Puedes darle un estilo moderno a la pagina? y automaticamente despliegalo
+- **2026-09-04 16:30** Chat - Agente respondio: ¡Hecho! He aplicado un estilo moderno, minimalista y elegante a la página y ya la he desplegado.
+
+Puedes ver los cambios aquí: https://KeynnerXe.github.io/agente-electiva-tecnologica/
+- **2026-09-04 16:30** Pagina generada por Gemma.
+- **2026-09-04 16:30** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:30** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:30** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:30** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
+, %%AGENT_SOURCE%% y https://KeynnerXe.github.io/agente-electiva-tecnologica/ son marcadores que un
 programa reemplazara despues: cópialos tal cual, exactamente una vez cada uno,
 en el lugar que corresponda.&quot;&quot;&quot;
 
@@ -779,8 +856,23 @@ Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
 - **2026-09-04 16:28** Pagina generada por Gemma.
 - **2026-09-04 16:28** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:28** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:28** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:28** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:28** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
+- **2026-09-04 16:30** Pagina generada por Gemma.
+- **2026-09-04 16:30** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:30** Cambios subidos a GitHub: Agrega/actualiza el QR de la pagina desplegada
+- **2026-09-04 16:30** Chat - Usuario dijo: Puedes darle un estilo moderno a la pagina? y automaticamente despliegalo
+- **2026-09-04 16:30** Chat - Agente respondio: ¡Hecho! He aplicado un estilo moderno, minimalista y elegante a la página y ya la he desplegado.
+
+Puedes ver los cambios aquí: https://KeynnerXe.github.io/agente-electiva-tecnologica/
+- **2026-09-04 16:30** Pagina generada por Gemma.
+- **2026-09-04 16:30** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:30** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:30** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:30** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
 &quot;, bitacora_text)
-        html_content = html_content.replace(&quot;&quot;, page_url or &quot;&quot;)
+        html_content = html_content.replace(&quot;https://KeynnerXe.github.io/agente-electiva-tecnologica/&quot;, page_url or &quot;&quot;)
         log(&quot;Pagina generada por Gemma.&quot;)
     else:
         html_content = build_static_fallback(
@@ -934,15 +1026,13 @@ def main() -&gt; None:
 if __name__ == &quot;__main__&quot;:
     main()
 </code></pre>
-        </section>
+    </section>
 
-        <section>
-            <h2>QR de esta pagina</h2>
-            <div class="qr-section">
-                <p>El QR se generará después del primer despliegue.</p>
-                <p><small>URL de referencia: </small></p>
-            </div>
-        </section>
-    </div>
+    <section class="qr-section">
+        <h2>QR de esta pagina</h2>
+        <img src="qr.png" alt="QR de esta pagina">
+        <p><a href="https://KeynnerXe.github.io/agente-electiva-tecnologica/">https://KeynnerXe.github.io/agente-electiva-tecnologica/</a></p>
+    </section>
+</div>
 </body>
 </html>
