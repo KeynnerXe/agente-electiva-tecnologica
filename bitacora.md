@@ -12,3 +12,7 @@
 - **2026-09-04 15:45** Repositorio git inicializado.
 - **2026-09-04 15:45** Repositorio 'agente-electiva-tecnologica' creado en GitHub.
 - **2026-09-04 15:45** Pagina web generada en docs/index.html.
+- **2026-09-04 15:45** Cambios subidos a GitHub: Version inicial del agente y la pagina
+- **2026-09-04 15:45** GitHub Pages activado (POST).
+- **2026-09-04 15:45** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
+- **2026-09-04 15:45** Pagina web generada en docs/index.html.
