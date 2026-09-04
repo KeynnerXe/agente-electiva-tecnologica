@@ -28,3 +28,7 @@
 - **2026-09-04 15:52** Inicio de ejecucion del agente.
 - **2026-09-04 15:53** El remoto 'origin' ya existe.
 - **2026-09-04 15:53** Pagina web generada en docs/index.html.
+- **2026-09-04 15:53** Cambios subidos a GitHub: Version inicial del agente y la pagina
+- **2026-09-04 15:53** GitHub Pages actualizado (PUT).
+- **2026-09-04 15:53** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
+- **2026-09-04 15:53** Pagina web generada en docs/index.html.
