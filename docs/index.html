@@ -6,70 +6,84 @@
 <title>Agente - Electiva Tecnologica II</title>
 <style>
 body {
-font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 background-color: #f4f7f6;
-color: #333;
+color: #333333;
+font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 line-height: 1.6;
 margin: 0;
 padding: 0;
 }
 .container {
 max-width: 850px;
-margin: 50px auto;
-background: #ffffff;
-padding: 40px;
-border-radius: 16px;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+margin: 40px auto;
+padding: 0 20px;
+}
+header {
+text-align: center;
+margin-bottom: 50px;
 }
 h1 {
 color: #1a2a6c;
-text-align: center;
 font-size: 2.5rem;
-margin-bottom: 40px;
+margin-bottom: 10px;
 }
 h2 {
 color: #1a2a6c;
-border-bottom: 2px solid #eef2f3;
+font-size: 1.8rem;
+border-bottom: 2px solid #e0e0e0;
 padding-bottom: 10px;
-margin-top: 50px;
-font-size: 1.75rem;
+margin-top: 0;
+}
+section {
+background: #ffffff;
+padding: 40px;
+margin-bottom: 30px;
+border-radius: 15px;
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 p {
-margin-bottom: 20px;
 font-size: 1.1rem;
-color: #4a4a4a;
+color: #555555;
 }
 img {
 max-width: 100%;
 height: auto;
-border-radius: 12px;
 display: block;
 margin: 30px auto;
-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 pre {
-background-color: #2d3436;
-color: #dfe6e9;
-padding: 25px;
-border-radius: 12px;
+background-color: #f8f9fa;
+padding: 20px;
+border-radius: 8px;
 overflow-x: auto;
+border: 1px solid #e9ecef;
+font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
 font-size: 0.9rem;
-line-height: 1.5;
-box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+color: #2c3e50;
 }
 code {
-font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+font-family: inherit;
 }
-@media (max-width: 768px) {
-.container {
-margin: 20px;
+a {
+color: #0052D4;
+text-decoration: none;
+font-weight: 500;
+display: block;
+text-align: center;
+margin-top: 15px;
+word-break: break-all;
+}
+a:hover {
+text-decoration: underline;
+}
+@media (max-width: 600px) {
+section {
 padding: 25px;
 }
 h1 {
 font-size: 2rem;
-}
-h2 {
-font-size: 1.5rem;
 }
 }
 </style>
@@ -77,17 +91,20 @@ font-size: 1.5rem;
 <body>
 <div class="container">
 <header>
-<h1>Agente de Automatización</h1>
+<h1>Agente de Proyecto</h1>
 </header>
+
 <section>
 <h2>Descripcion del proyecto</h2>
-<p>¡Hola! Soy el agente inteligente diseñado para dar vida a este proyecto universitario. Mi función principal es actuar como el puente entre la planificación y la ejecución técnica, integrando un árbol de procesos detallado en Obsidian con un motor de automatización desarrollado en Python.</p>
-<p>Me encargo de gestionar todo el ciclo de vida del flujo de trabajo: registro los avances del proyecto, realizo la subida de código a GitHub y gestiono el despliegue automático en GitHub Pages. Además, tengo la capacidad de autogenerar mi propia presencia digital, creando esta página web que contiene mi código fuente para garantizar una transparencia total en el proceso.</p>
+<p>Hola, soy el agente inteligente diseñado para este proyecto universitario. Mi función principal es actuar como un puente de automatización entre la planificación y la ejecución técnica. Integro un árbol de procesos estructurado en Obsidian con un motor de ejecución en Python que gestiona el ciclo de vida del desarrollo: registro automáticamente cada avance en la bitácora, sincroniza el código con GitHub y realiza el despliegue en GitHub Pages de forma autónoma.</p>
+<p>Este sistema permite que el flujo de trabajo sea fluido y transparente. Además de gestionar el repositorio, tengo la capacidad de generar mi propia página de presentación, la cual incluye mi código fuente y un código QR, garantizando que la documentación y el estado del proyecto sean accesibles de manera inmediata y profesional para cualquier interesado.</p>
 </section>
+
 <section>
 <h2>Arbol del proceso (Obsidian)</h2>
 <img src="arbol.png" alt="Arbol del proceso">
 </section>
+
 <section>
 <h2>Bitacora de avance</h2>
 <pre># Bitacora del agente
@@ -156,8 +173,18 @@ Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
 - **2026-09-04 16:25** Pagina generada por Gemma.
 - **2026-09-04 16:25** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:26** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:27** Fallo la llamada a Gemma (503 UNAVAILABLE. {&#x27;error&#x27;: {&#x27;code&#x27;: 503, &#x27;message&#x27;: &#x27;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&#x27;, &#x27;status&#x27;: &#x27;UNAVAILABLE&#x27;}}), se usa texto por defecto.
+- **2026-09-04 16:27** Pagina generada con la plantilla de respaldo (sin IA).
+- **2026-09-04 16:27** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:28** Pagina generada por Gemma.
+- **2026-09-04 16:28** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:28** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:28** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:28** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:28** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
 </pre>
 </section>
+
 <section>
 <h2>Script del agente (agent.py)</h2>
 <pre><code>&quot;&quot;&quot;
@@ -413,6 +440,15 @@ Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
 - **2026-09-04 16:25** Pagina generada por Gemma.
 - **2026-09-04 16:25** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:26** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:27** Fallo la llamada a Gemma (503 UNAVAILABLE. {&#x27;error&#x27;: {&#x27;code&#x27;: 503, &#x27;message&#x27;: &#x27;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&#x27;, &#x27;status&#x27;: &#x27;UNAVAILABLE&#x27;}}), se usa texto por defecto.
+- **2026-09-04 16:27** Pagina generada con la plantilla de respaldo (sin IA).
+- **2026-09-04 16:27** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:28** Pagina generada por Gemma.
+- **2026-09-04 16:28** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:28** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:28** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:28** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:28** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
 &quot;]
 
 
@@ -427,8 +463,8 @@ def generate_html_with_ai(description: str, tree_image: str | None,
     )
     qr_instruction = (
         f&#x27;Incluye la imagen con &lt;img src=&quot;{qr_relpath}&quot; alt=&quot;QR de esta pagina&quot;&gt; &#x27;
-        &quot;y despues un enlace visible &lt;a href=\&quot;\&quot;&gt;&lt;/a&gt; &quot;
-        &quot;(deja el texto  tal cual, sin traducirlo ni cambiarlo).&quot;
+        &quot;y despues un enlace visible &lt;a href=\&quot;https://KeynnerXe.github.io/agente-electiva-tecnologica/\&quot;&gt;https://KeynnerXe.github.io/agente-electiva-tecnologica/&lt;/a&gt; &quot;
+        &quot;(deja el texto https://KeynnerXe.github.io/agente-electiva-tecnologica/ tal cual, sin traducirlo ni cambiarlo).&quot;
         if qr_relpath else
         &quot;El QR todavia no existe: escribe que se genera despues del primer despliegue.&quot;
     )
@@ -515,6 +551,15 @@ Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
 - **2026-09-04 16:25** Pagina generada por Gemma.
 - **2026-09-04 16:25** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:26** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:27** Fallo la llamada a Gemma (503 UNAVAILABLE. {&#x27;error&#x27;: {&#x27;code&#x27;: 503, &#x27;message&#x27;: &#x27;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&#x27;, &#x27;status&#x27;: &#x27;UNAVAILABLE&#x27;}}), se usa texto por defecto.
+- **2026-09-04 16:27** Pagina generada con la plantilla de respaldo (sin IA).
+- **2026-09-04 16:27** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:28** Pagina generada por Gemma.
+- **2026-09-04 16:28** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:28** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:28** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:28** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:28** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
 
   4. &quot;Script del agente (agent.py)&quot;: dentro de &lt;pre&gt;&lt;code&gt;, incluye exactamente
      y sin modificar el siguiente texto literal (no lo traduzcas ni reescribas):
@@ -588,7 +633,16 @@ Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
 - **2026-09-04 16:25** Pagina generada por Gemma.
 - **2026-09-04 16:25** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:26** El remoto &#x27;origin&#x27; ya existe.
-, %%AGENT_SOURCE%% y  son marcadores que un
+- **2026-09-04 16:27** Fallo la llamada a Gemma (503 UNAVAILABLE. {&#x27;error&#x27;: {&#x27;code&#x27;: 503, &#x27;message&#x27;: &#x27;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&#x27;, &#x27;status&#x27;: &#x27;UNAVAILABLE&#x27;}}), se usa texto por defecto.
+- **2026-09-04 16:27** Pagina generada con la plantilla de respaldo (sin IA).
+- **2026-09-04 16:27** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:28** Pagina generada por Gemma.
+- **2026-09-04 16:28** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:28** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:28** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:28** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:28** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
+, %%AGENT_SOURCE%% y https://KeynnerXe.github.io/agente-electiva-tecnologica/ son marcadores que un
 programa reemplazara despues: cópialos tal cual, exactamente una vez cada uno,
 en el lugar que corresponda.&quot;&quot;&quot;
 
@@ -748,8 +802,17 @@ Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
 - **2026-09-04 16:25** Pagina generada por Gemma.
 - **2026-09-04 16:25** Pagina web guardada en docs/index.html.
 - **2026-09-04 16:26** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:27** Fallo la llamada a Gemma (503 UNAVAILABLE. {&#x27;error&#x27;: {&#x27;code&#x27;: 503, &#x27;message&#x27;: &#x27;This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.&#x27;, &#x27;status&#x27;: &#x27;UNAVAILABLE&#x27;}}), se usa texto por defecto.
+- **2026-09-04 16:27** Pagina generada con la plantilla de respaldo (sin IA).
+- **2026-09-04 16:27** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:28** Pagina generada por Gemma.
+- **2026-09-04 16:28** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:28** El remoto &#x27;origin&#x27; ya existe.
+- **2026-09-04 16:28** Cambios subidos a GitHub: Actualiza el agente y la pagina
+- **2026-09-04 16:28** GitHub Pages actualizado (PUT).
+- **2026-09-04 16:28** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
 &quot;, bitacora_text)
-        html_content = html_content.replace(&quot;&quot;, page_url or &quot;&quot;)
+        html_content = html_content.replace(&quot;https://KeynnerXe.github.io/agente-electiva-tecnologica/&quot;, page_url or &quot;&quot;)
         log(&quot;Pagina generada por Gemma.&quot;)
     else:
         html_content = build_static_fallback(
@@ -904,9 +967,11 @@ if __name__ == &quot;__main__&quot;:
     main()
 </code></pre>
 </section>
+
 <section>
 <h2>QR de esta pagina</h2>
-<p>El código QR para acceder rápidamente a  todavía no existe; se generará automáticamente después del primer despliegue exitoso.</p>
+<img src="qr.png" alt="QR de esta pagina">
+<a href="https://KeynnerXe.github.io/agente-electiva-tecnologica/">https://KeynnerXe.github.io/agente-electiva-tecnologica/</a>
 </section>
 </div>
 </body>
