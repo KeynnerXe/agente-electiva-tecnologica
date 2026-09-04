@@ -14,6 +14,7 @@ Funciones que cumple este agente:
 Uso:
     python agent.py            -> ejecuta el flujo completo
     python agent.py --dry-run  -> genera la pagina localmente, sin git/GitHub
+    python agent.py --chat     -> habla con el agente (Gemma) por terminal
 """
 
 import argparse
@@ -45,6 +46,16 @@ DEFAULT_DESCRIPTION = (
     "con un agente que automatiza el registro de avances, la subida a "
     "GitHub, el despliegue en GitHub Pages y la generacion de esta pagina."
 )
+GITHUB_REPO_NAME = os.getenv("GITHUB_REPO_NAME", "agente-electiva-tecnologica")
+REPO_VISIBILITY = os.getenv("REPO_VISIBILITY", "public")
+DESCRIPTION_PROMPT = (
+    "Redacta en un parrafo (maximo 60 palabras) la descripcion de un "
+    "proyecto universitario que conecta un arbol de proceso hecho en "
+    "Obsidian con un agente automatizado en Python que registra avances, "
+    "sube el proyecto a GitHub, lo despliega en GitHub Pages y genera "
+    "una pagina con su propio codigo y un QR."
+)
+EXTRA_STYLE = ""
 _client = None
 
 
@@ -53,8 +64,6 @@ def get_client() -> genai.Client:
     if _client is None:
         _client = genai.Client(api_key=GEMINI_API_KEY)
     return _client
-GITHUB_REPO_NAME = os.getenv("GITHUB_REPO_NAME", "agente-electiva-tecnologica")
-REPO_VISIBILITY = os.getenv("REPO_VISIBILITY", "public")
 
 
 def log(message: str) -> None:
@@ -217,6 +226,7 @@ Requisitos del documento:
      y sin modificar el siguiente texto literal (no lo traduzcas ni reescribas):
      %%AGENT_SOURCE%%
   5. "QR de esta pagina": {qr_instruction}
+{f'Instrucciones de estilo pedidas por el usuario (siguelas de verdad): {EXTRA_STYLE}' if EXTRA_STYLE else ''}
 
 Los textos %%BITACORA%%, %%AGENT_SOURCE%% y %%PAGE_URL%% son marcadores que un
 programa reemplazara despues: cópialos tal cual, exactamente una vez cada uno,
@@ -333,37 +343,134 @@ def generate_qr(url: str) -> str:
     return "qr.png"
 
 
+def get_owner() -> str:
+    return run_cmd(["gh", "api", "user", "-q", ".login"])
+
+
+def run_deploy_pipeline() -> str:
+    """Corre el flujo completo: describe, sube a GitHub, despliega y genera el QR."""
+    description = ask_gemini(DESCRIPTION_PROMPT)
+    ensure_git_repo()
+    owner = ensure_github_remote()
+    build_site(description, page_url=None, qr_relpath=None)
+    commit_and_push("Actualiza el agente y la pagina")
+    page_url = enable_github_pages(owner)
+    qr_relpath = generate_qr(page_url)
+    build_site(description, page_url=page_url, qr_relpath=qr_relpath)
+    commit_and_push("Agrega/actualiza el QR de la pagina desplegada")
+    return page_url
+
+
+def cambiar_estilo_pagina(instrucciones_de_estilo: str) -> str:
+    """Cambia el estilo visual de la pagina web del proyecto (colores, tipografia,
+    disposicion, modernidad, etc.) y la regenera en docs/index.html.
+
+    Usa esta funcion cuando el usuario pida que la pagina se vea distinta,
+    mas moderna, con otro estilo, otros colores, etc. Esto NO sube los
+    cambios a GitHub por si solo; si el usuario tambien pidio publicar o
+    desplegar, llama ademas a desplegar_en_github.
+
+    Args:
+        instrucciones_de_estilo: descripcion en lenguaje natural de como debe
+            verse la pagina.
+    """
+    global EXTRA_STYLE
+    EXTRA_STYLE = instrucciones_de_estilo
+    description = ask_gemini(DESCRIPTION_PROMPT)
+    has_git = (ROOT / ".git").exists()
+    page_url = compute_page_url_if_deployed() if has_git else None
+    qr_relpath = "qr.png" if (DOCS / "qr.png").exists() else None
+    build_site(description, page_url=page_url, qr_relpath=qr_relpath)
+    return "Actualice el estilo de la pagina en docs/index.html."
+
+
+def desplegar_en_github() -> str:
+    """Sube el proyecto a GitHub (creando el repo si hace falta) y publica o
+    actualiza la pagina en GitHub Pages, con su QR.
+
+    Usa esta funcion cuando el usuario pida subir, publicar, desplegar o
+    actualizar la pagina en linea.
+    """
+    page_url = run_deploy_pipeline()
+    return f"Despliegue completado. La pagina esta publicada en: {page_url}"
+
+
+def compute_page_url_if_deployed() -> str | None:
+    try:
+        run_cmd(["git", "remote", "get-url", "origin"])
+    except RuntimeError:
+        return None
+    return f"https://{get_owner()}.github.io/{GITHUB_REPO_NAME}/"
+
+
+def chat() -> None:
+    """Modo interactivo: habla con el agente (Gemma) desde la terminal.
+
+    El agente puede ademas EJECUTAR acciones reales (no solo responder texto)
+    usando function calling: cambiar el estilo de la pagina y desplegarla.
+    """
+    if not GEMINI_API_KEY:
+        print("Configura GEMINI_API_KEY en .env antes de usar el chat.")
+        return
+
+    client = get_client()
+    chat_session = client.chats.create(
+        model=GEMINI_MODEL,
+        config=types.GenerateContentConfig(
+            system_instruction=(
+                "Eres el agente de un proyecto universitario de la Electiva "
+                "Tecnologica II. Conoces tu propio codigo (agent.py): llevas "
+                "una bitacora de avance, subes el proyecto a GitHub, lo "
+                "despliegas en GitHub Pages y generas la pagina web del "
+                "proyecto con su QR. Tienes herramientas de verdad para "
+                "cambiar el estilo de la pagina y para desplegarla: cuando "
+                "el usuario pida algo de eso, LLAMA a la herramienta en vez "
+                "de solo decir que lo hiciste. Responde en espanol, breve y claro."
+            ),
+            tools=[cambiar_estilo_pagina, desplegar_en_github],
+        ),
+    )
+    print("Chat con el agente (escribe 'salir' para terminar).\n")
+    while True:
+        try:
+            user_input = input("Tu: ").strip()
+        except (EOFError, KeyboardInterrupt):
+            break
+        if user_input.lower() in {"salir", "exit", "quit"}:
+            break
+        if not user_input:
+            continue
+        try:
+            response = chat_session.send_message(user_input)
+            text = response.text.strip()
+        except Exception as exc:
+            text = f"(Error al contactar a Gemma: {exc})"
+        print(f"Agente: {text}\n")
+        log(f"Chat - Usuario dijo: {user_input}")
+        log(f"Chat - Agente respondio: {text}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true",
                          help="Genera la pagina localmente sin tocar git/GitHub.")
+    parser.add_argument("--chat", action="store_true",
+                         help="Habla con el agente por terminal, en vez de correr el flujo completo.")
     args = parser.parse_args()
+
+    if args.chat:
+        chat()
+        return
 
     log("Inicio de ejecucion del agente.")
 
-    description = ask_gemini(
-        "Redacta en un parrafo (maximo 60 palabras) la descripcion de un "
-        "proyecto universitario que conecta un arbol de proceso hecho en "
-        "Obsidian con un agente automatizado en Python que registra avances, "
-        "sube el proyecto a GitHub, lo despliega en GitHub Pages y genera "
-        "una pagina con su propio codigo y un QR."
-    )
-
     if args.dry_run:
+        description = ask_gemini(DESCRIPTION_PROMPT)
         build_site(description, page_url=None, qr_relpath=None)
         print("\nListo (dry-run). Abre docs/index.html en tu navegador.")
         return
 
-    ensure_git_repo()
-    owner = ensure_github_remote()
-    build_site(description, page_url=None, qr_relpath=None)
-    commit_and_push("Version inicial del agente y la pagina")
-    page_url = enable_github_pages(owner)
-
-    qr_relpath = generate_qr(page_url)
-    build_site(description, page_url=page_url, qr_relpath=qr_relpath)
-    commit_and_push("Agrega QR apuntando a la pagina desplegada")
-
+    page_url = run_deploy_pipeline()
     print(f"\nListo. En unos minutos tu pagina estara en: {page_url}")
 
 

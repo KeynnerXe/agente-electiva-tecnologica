@@ -5,101 +5,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agente - Electiva Tecnologica II</title>
 <style>
-    :root {
-        --primary-color: #2c3e50;
-        --accent-color: #3498db;
-        --bg-color: #f8f9fa;
-        --text-color: #333;
-        --code-bg: #282c34;
-        --code-text: #abb2bf;
-    }
-    body {
-        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        line-height: 1.6;
-        color: var(--text-color);
-        background-color: var(--bg-color);
-        margin: 0;
-        padding: 0;
-    }
-    .container {
-        max-width: 850px;
-        margin: 40px auto;
-        background: #fff;
-        padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    }
-    h2 {
-        color: var(--primary-color);
-        border-bottom: 2px solid #eee;
-        padding-bottom: 10px;
-        margin-top: 40px;
-        font-size: 1.75rem;
-    }
-    p {
-        margin-bottom: 20px;
-        font-size: 1.1rem;
-    }
-    img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 25px auto;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    pre {
-        background-color: var(--code-bg);
-        color: var(--code-text);
-        padding: 20px;
-        border-radius: 8px;
-        overflow-x: auto;
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
-    code {
-        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-    }
-    a {
-        color: var(--accent-color);
-        text-decoration: none;
-        word-break: break-all;
-        font-weight: bold;
-    }
-    a:hover {
-        text-decoration: underline;
-    }
-    @media (max-width: 600px) {
-        .container {
-            margin: 10px;
-            padding: 20px;
-        }
-        h2 {
-            font-size: 1.4rem;
-        }
-    }
+body {
+font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+background-color: #f4f7f6;
+color: #333;
+line-height: 1.6;
+margin: 0;
+padding: 0;
+}
+.container {
+max-width: 850px;
+margin: 50px auto;
+background: #ffffff;
+padding: 40px;
+border-radius: 16px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+h1 {
+color: #1a2a6c;
+text-align: center;
+font-size: 2.5rem;
+margin-bottom: 40px;
+}
+h2 {
+color: #1a2a6c;
+border-bottom: 2px solid #eef2f3;
+padding-bottom: 10px;
+margin-top: 50px;
+font-size: 1.75rem;
+}
+p {
+margin-bottom: 20px;
+font-size: 1.1rem;
+color: #4a4a4a;
+}
+img {
+max-width: 100%;
+height: auto;
+border-radius: 12px;
+display: block;
+margin: 30px auto;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+pre {
+background-color: #2d3436;
+color: #dfe6e9;
+padding: 25px;
+border-radius: 12px;
+overflow-x: auto;
+font-size: 0.9rem;
+line-height: 1.5;
+box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+}
+code {
+font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+@media (max-width: 768px) {
+.container {
+margin: 20px;
+padding: 25px;
+}
+h1 {
+font-size: 2rem;
+}
+h2 {
+font-size: 1.5rem;
+}
+}
 </style>
 </head>
 <body>
 <div class="container">
-    <section>
-        <h2>Descripcion del proyecto</h2>
-        <p>
-            ¡Hola! Soy el agente inteligente diseñado para este proyecto académico. Mi función principal es actuar como el motor de automatización que conecta la planificación conceptual en Obsidian con la ejecución técnica en Python. Al interpretar el árbol de procesos, gestiono de forma autónoma el flujo de trabajo, asegurando que cada avance sea registrado y que el código se mantenga sincronizado con GitHub.
-        </p>
-        <p>
-            Además, me encargo de la gestión de despliegue en GitHub Pages, lo que me permite generar y actualizar esta propia página web. Mi arquitectura incluye la creación de identificadores visuales, como códigos QR, para garantizar una trazabilidad total y un acceso inmediato a la evolución del proyecto desde cualquier dispositivo.
-        </p>
-    </section>
-
-    <section>
-        <h2>Arbol del proceso (Obsidian)</h2>
-        <img src="arbol.png" alt="Arbol del proceso">
-    </section>
-
-    <section>
-        <h2>Bitacora de avance</h2>
-        <pre># Bitacora del agente
+<header>
+<h1>Agente de Automatización</h1>
+</header>
+<section>
+<h2>Descripcion del proyecto</h2>
+<p>¡Hola! Soy el agente inteligente diseñado para dar vida a este proyecto universitario. Mi función principal es actuar como el puente entre la planificación y la ejecución técnica, integrando un árbol de procesos detallado en Obsidian con un motor de automatización desarrollado en Python.</p>
+<p>Me encargo de gestionar todo el ciclo de vida del flujo de trabajo: registro los avances del proyecto, realizo la subida de código a GitHub y gestiono el despliegue automático en GitHub Pages. Además, tengo la capacidad de autogenerar mi propia presencia digital, creando esta página web que contiene mi código fuente para garantizar una transparencia total en el proceso.</p>
+</section>
+<section>
+<h2>Arbol del proceso (Obsidian)</h2>
+<img src="arbol.png" alt="Arbol del proceso">
+</section>
+<section>
+<h2>Bitacora de avance</h2>
+<pre># Bitacora del agente
 
 - **2026-09-04 15:34** Inicio de ejecucion del agente.
 - **2026-09-04 15:34** No hay GEMINI_API_KEY configurada, se usa texto por defecto.
@@ -144,12 +135,32 @@
 - **2026-09-04 16:04** Cambios subidos a GitHub: Version inicial del agente y la pagina
 - **2026-09-04 16:04** GitHub Pages actualizado (PUT).
 - **2026-09-04 16:04** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
-</pre>
-    </section>
+- **2026-09-04 16:05** Pagina generada por Gemma.
+- **2026-09-04 16:05** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:05** Cambios subidos a GitHub: Agrega QR apuntando a la pagina desplegada
+- **2026-09-04 16:12** Chat - Usuario dijo: Hola, quien eres?
+- **2026-09-04 16:12** Chat - Agente respondio: Hola. Soy el agente del proyecto de la Electiva Tecnológica II. 
 
-    <section>
-        <h2>Script del agente (agent.py)</h2>
-        <pre><code>&quot;&quot;&quot;
+Mi función es gestionar el desarrollo mediante mi código (`agent.py`), lo cual incluye llevar la bitácora de avance, subir el proyecto a GitHub, realizar el despliegue en GitHub Pages y generar la página web oficial con su respectivo código QR.
+- **2026-09-04 16:14** Chat - Usuario dijo: Puedes darle un estilo moderno a la pagina? y automaticamente despliegalo
+- **2026-09-04 16:14** Chat - Agente respondio: Entendido. Aplicaré un diseño moderno utilizando **Tailwind CSS** con un estilo *Glassmorphism* (efecto de cristal esmerilado, sombras suaves y tipografía limpia) para que la interfaz se vea profesional y tecnológica.
+
+**Mis acciones inmediatas son:**
+
+1.  **Actualizar el código:** Modificar los archivos de la web con el nuevo estilo.
+2.  **Git Push:** Subir los cambios automáticamente a tu repositorio en GitHub.
+3.  **Despliegue:** Ejecutar el proceso de actualización en **GitHub Pages**.
+4.  **Bitácora:** Registrar la mejora estética en el log de avances.
+
+Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
+- **2026-09-04 16:25** Pagina generada por Gemma.
+- **2026-09-04 16:25** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:26** El remoto &#x27;origin&#x27; ya existe.
+</pre>
+</section>
+<section>
+<h2>Script del agente (agent.py)</h2>
+<pre><code>&quot;&quot;&quot;
 Agente para la Electiva Tecnologica II.
 
 Funciones que cumple este agente:
@@ -165,6 +176,7 @@ Funciones que cumple este agente:
 Uso:
     python agent.py            -&gt; ejecuta el flujo completo
     python agent.py --dry-run  -&gt; genera la pagina localmente, sin git/GitHub
+    python agent.py --chat     -&gt; habla con el agente (Gemma) por terminal
 &quot;&quot;&quot;
 
 import argparse
@@ -196,6 +208,16 @@ DEFAULT_DESCRIPTION = (
     &quot;con un agente que automatiza el registro de avances, la subida a &quot;
     &quot;GitHub, el despliegue en GitHub Pages y la generacion de esta pagina.&quot;
 )
+GITHUB_REPO_NAME = os.getenv(&quot;GITHUB_REPO_NAME&quot;, &quot;agente-electiva-tecnologica&quot;)
+REPO_VISIBILITY = os.getenv(&quot;REPO_VISIBILITY&quot;, &quot;public&quot;)
+DESCRIPTION_PROMPT = (
+    &quot;Redacta en un parrafo (maximo 60 palabras) la descripcion de un &quot;
+    &quot;proyecto universitario que conecta un arbol de proceso hecho en &quot;
+    &quot;Obsidian con un agente automatizado en Python que registra avances, &quot;
+    &quot;sube el proyecto a GitHub, lo despliega en GitHub Pages y genera &quot;
+    &quot;una pagina con su propio codigo y un QR.&quot;
+)
+EXTRA_STYLE = &quot;&quot;
 _client = None
 
 
@@ -204,8 +226,6 @@ def get_client() -&gt; genai.Client:
     if _client is None:
         _client = genai.Client(api_key=GEMINI_API_KEY)
     return _client
-GITHUB_REPO_NAME = os.getenv(&quot;GITHUB_REPO_NAME&quot;, &quot;agente-electiva-tecnologica&quot;)
-REPO_VISIBILITY = os.getenv(&quot;REPO_VISIBILITY&quot;, &quot;public&quot;)
 
 
 def log(message: str) -&gt; None:
@@ -372,6 +392,27 @@ REQUIRED_PLACEHOLDERS = [&quot;%%AGENT_SOURCE%%&quot;, &quot;# Bitacora del agen
 - **2026-09-04 16:04** Cambios subidos a GitHub: Version inicial del agente y la pagina
 - **2026-09-04 16:04** GitHub Pages actualizado (PUT).
 - **2026-09-04 16:04** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
+- **2026-09-04 16:05** Pagina generada por Gemma.
+- **2026-09-04 16:05** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:05** Cambios subidos a GitHub: Agrega QR apuntando a la pagina desplegada
+- **2026-09-04 16:12** Chat - Usuario dijo: Hola, quien eres?
+- **2026-09-04 16:12** Chat - Agente respondio: Hola. Soy el agente del proyecto de la Electiva Tecnológica II. 
+
+Mi función es gestionar el desarrollo mediante mi código (`agent.py`), lo cual incluye llevar la bitácora de avance, subir el proyecto a GitHub, realizar el despliegue en GitHub Pages y generar la página web oficial con su respectivo código QR.
+- **2026-09-04 16:14** Chat - Usuario dijo: Puedes darle un estilo moderno a la pagina? y automaticamente despliegalo
+- **2026-09-04 16:14** Chat - Agente respondio: Entendido. Aplicaré un diseño moderno utilizando **Tailwind CSS** con un estilo *Glassmorphism* (efecto de cristal esmerilado, sombras suaves y tipografía limpia) para que la interfaz se vea profesional y tecnológica.
+
+**Mis acciones inmediatas son:**
+
+1.  **Actualizar el código:** Modificar los archivos de la web con el nuevo estilo.
+2.  **Git Push:** Subir los cambios automáticamente a tu repositorio en GitHub.
+3.  **Despliegue:** Ejecutar el proceso de actualización en **GitHub Pages**.
+4.  **Bitácora:** Registrar la mejora estética en el log de avances.
+
+Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
+- **2026-09-04 16:25** Pagina generada por Gemma.
+- **2026-09-04 16:25** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:26** El remoto &#x27;origin&#x27; ya existe.
 &quot;]
 
 
@@ -386,8 +427,8 @@ def generate_html_with_ai(description: str, tree_image: str | None,
     )
     qr_instruction = (
         f&#x27;Incluye la imagen con &lt;img src=&quot;{qr_relpath}&quot; alt=&quot;QR de esta pagina&quot;&gt; &#x27;
-        &quot;y despues un enlace visible &lt;a href=\&quot;https://KeynnerXe.github.io/agente-electiva-tecnologica/\&quot;&gt;https://KeynnerXe.github.io/agente-electiva-tecnologica/&lt;/a&gt; &quot;
-        &quot;(deja el texto https://KeynnerXe.github.io/agente-electiva-tecnologica/ tal cual, sin traducirlo ni cambiarlo).&quot;
+        &quot;y despues un enlace visible &lt;a href=\&quot;\&quot;&gt;&lt;/a&gt; &quot;
+        &quot;(deja el texto  tal cual, sin traducirlo ni cambiarlo).&quot;
         if qr_relpath else
         &quot;El QR todavia no existe: escribe que se genera despues del primer despliegue.&quot;
     )
@@ -453,11 +494,33 @@ Requisitos del documento:
 - **2026-09-04 16:04** Cambios subidos a GitHub: Version inicial del agente y la pagina
 - **2026-09-04 16:04** GitHub Pages actualizado (PUT).
 - **2026-09-04 16:04** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
+- **2026-09-04 16:05** Pagina generada por Gemma.
+- **2026-09-04 16:05** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:05** Cambios subidos a GitHub: Agrega QR apuntando a la pagina desplegada
+- **2026-09-04 16:12** Chat - Usuario dijo: Hola, quien eres?
+- **2026-09-04 16:12** Chat - Agente respondio: Hola. Soy el agente del proyecto de la Electiva Tecnológica II. 
+
+Mi función es gestionar el desarrollo mediante mi código (`agent.py`), lo cual incluye llevar la bitácora de avance, subir el proyecto a GitHub, realizar el despliegue en GitHub Pages y generar la página web oficial con su respectivo código QR.
+- **2026-09-04 16:14** Chat - Usuario dijo: Puedes darle un estilo moderno a la pagina? y automaticamente despliegalo
+- **2026-09-04 16:14** Chat - Agente respondio: Entendido. Aplicaré un diseño moderno utilizando **Tailwind CSS** con un estilo *Glassmorphism* (efecto de cristal esmerilado, sombras suaves y tipografía limpia) para que la interfaz se vea profesional y tecnológica.
+
+**Mis acciones inmediatas son:**
+
+1.  **Actualizar el código:** Modificar los archivos de la web con el nuevo estilo.
+2.  **Git Push:** Subir los cambios automáticamente a tu repositorio en GitHub.
+3.  **Despliegue:** Ejecutar el proceso de actualización en **GitHub Pages**.
+4.  **Bitácora:** Registrar la mejora estética en el log de avances.
+
+Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
+- **2026-09-04 16:25** Pagina generada por Gemma.
+- **2026-09-04 16:25** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:26** El remoto &#x27;origin&#x27; ya existe.
 
   4. &quot;Script del agente (agent.py)&quot;: dentro de &lt;pre&gt;&lt;code&gt;, incluye exactamente
      y sin modificar el siguiente texto literal (no lo traduzcas ni reescribas):
      %%AGENT_SOURCE%%
   5. &quot;QR de esta pagina&quot;: {qr_instruction}
+{f&#x27;Instrucciones de estilo pedidas por el usuario (siguelas de verdad): {EXTRA_STYLE}&#x27; if EXTRA_STYLE else &#x27;&#x27;}
 
 Los textos # Bitacora del agente
 
@@ -504,7 +567,28 @@ Los textos # Bitacora del agente
 - **2026-09-04 16:04** Cambios subidos a GitHub: Version inicial del agente y la pagina
 - **2026-09-04 16:04** GitHub Pages actualizado (PUT).
 - **2026-09-04 16:04** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
-, %%AGENT_SOURCE%% y https://KeynnerXe.github.io/agente-electiva-tecnologica/ son marcadores que un
+- **2026-09-04 16:05** Pagina generada por Gemma.
+- **2026-09-04 16:05** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:05** Cambios subidos a GitHub: Agrega QR apuntando a la pagina desplegada
+- **2026-09-04 16:12** Chat - Usuario dijo: Hola, quien eres?
+- **2026-09-04 16:12** Chat - Agente respondio: Hola. Soy el agente del proyecto de la Electiva Tecnológica II. 
+
+Mi función es gestionar el desarrollo mediante mi código (`agent.py`), lo cual incluye llevar la bitácora de avance, subir el proyecto a GitHub, realizar el despliegue en GitHub Pages y generar la página web oficial con su respectivo código QR.
+- **2026-09-04 16:14** Chat - Usuario dijo: Puedes darle un estilo moderno a la pagina? y automaticamente despliegalo
+- **2026-09-04 16:14** Chat - Agente respondio: Entendido. Aplicaré un diseño moderno utilizando **Tailwind CSS** con un estilo *Glassmorphism* (efecto de cristal esmerilado, sombras suaves y tipografía limpia) para que la interfaz se vea profesional y tecnológica.
+
+**Mis acciones inmediatas son:**
+
+1.  **Actualizar el código:** Modificar los archivos de la web con el nuevo estilo.
+2.  **Git Push:** Subir los cambios automáticamente a tu repositorio en GitHub.
+3.  **Despliegue:** Ejecutar el proceso de actualización en **GitHub Pages**.
+4.  **Bitácora:** Registrar la mejora estética en el log de avances.
+
+Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
+- **2026-09-04 16:25** Pagina generada por Gemma.
+- **2026-09-04 16:25** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:26** El remoto &#x27;origin&#x27; ya existe.
+, %%AGENT_SOURCE%% y  son marcadores que un
 programa reemplazara despues: cópialos tal cual, exactamente una vez cada uno,
 en el lugar que corresponda.&quot;&quot;&quot;
 
@@ -643,8 +727,29 @@ def build_site(description: str, page_url: str | None, qr_relpath: str | None) -
 - **2026-09-04 16:04** Cambios subidos a GitHub: Version inicial del agente y la pagina
 - **2026-09-04 16:04** GitHub Pages actualizado (PUT).
 - **2026-09-04 16:04** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
+- **2026-09-04 16:05** Pagina generada por Gemma.
+- **2026-09-04 16:05** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:05** Cambios subidos a GitHub: Agrega QR apuntando a la pagina desplegada
+- **2026-09-04 16:12** Chat - Usuario dijo: Hola, quien eres?
+- **2026-09-04 16:12** Chat - Agente respondio: Hola. Soy el agente del proyecto de la Electiva Tecnológica II. 
+
+Mi función es gestionar el desarrollo mediante mi código (`agent.py`), lo cual incluye llevar la bitácora de avance, subir el proyecto a GitHub, realizar el despliegue en GitHub Pages y generar la página web oficial con su respectivo código QR.
+- **2026-09-04 16:14** Chat - Usuario dijo: Puedes darle un estilo moderno a la pagina? y automaticamente despliegalo
+- **2026-09-04 16:14** Chat - Agente respondio: Entendido. Aplicaré un diseño moderno utilizando **Tailwind CSS** con un estilo *Glassmorphism* (efecto de cristal esmerilado, sombras suaves y tipografía limpia) para que la interfaz se vea profesional y tecnológica.
+
+**Mis acciones inmediatas son:**
+
+1.  **Actualizar el código:** Modificar los archivos de la web con el nuevo estilo.
+2.  **Git Push:** Subir los cambios automáticamente a tu repositorio en GitHub.
+3.  **Despliegue:** Ejecutar el proceso de actualización en **GitHub Pages**.
+4.  **Bitácora:** Registrar la mejora estética en el log de avances.
+
+Procedo con la ejecución. Te avisaré cuando el enlace esté listo.
+- **2026-09-04 16:25** Pagina generada por Gemma.
+- **2026-09-04 16:25** Pagina web guardada en docs/index.html.
+- **2026-09-04 16:26** El remoto &#x27;origin&#x27; ya existe.
 &quot;, bitacora_text)
-        html_content = html_content.replace(&quot;https://KeynnerXe.github.io/agente-electiva-tecnologica/&quot;, page_url or &quot;&quot;)
+        html_content = html_content.replace(&quot;&quot;, page_url or &quot;&quot;)
         log(&quot;Pagina generada por Gemma.&quot;)
     else:
         html_content = build_static_fallback(
@@ -664,50 +769,145 @@ def generate_qr(url: str) -&gt; str:
     return &quot;qr.png&quot;
 
 
+def get_owner() -&gt; str:
+    return run_cmd([&quot;gh&quot;, &quot;api&quot;, &quot;user&quot;, &quot;-q&quot;, &quot;.login&quot;])
+
+
+def run_deploy_pipeline() -&gt; str:
+    &quot;&quot;&quot;Corre el flujo completo: describe, sube a GitHub, despliega y genera el QR.&quot;&quot;&quot;
+    description = ask_gemini(DESCRIPTION_PROMPT)
+    ensure_git_repo()
+    owner = ensure_github_remote()
+    build_site(description, page_url=None, qr_relpath=None)
+    commit_and_push(&quot;Actualiza el agente y la pagina&quot;)
+    page_url = enable_github_pages(owner)
+    qr_relpath = generate_qr(page_url)
+    build_site(description, page_url=page_url, qr_relpath=qr_relpath)
+    commit_and_push(&quot;Agrega/actualiza el QR de la pagina desplegada&quot;)
+    return page_url
+
+
+def cambiar_estilo_pagina(instrucciones_de_estilo: str) -&gt; str:
+    &quot;&quot;&quot;Cambia el estilo visual de la pagina web del proyecto (colores, tipografia,
+    disposicion, modernidad, etc.) y la regenera en docs/index.html.
+
+    Usa esta funcion cuando el usuario pida que la pagina se vea distinta,
+    mas moderna, con otro estilo, otros colores, etc. Esto NO sube los
+    cambios a GitHub por si solo; si el usuario tambien pidio publicar o
+    desplegar, llama ademas a desplegar_en_github.
+
+    Args:
+        instrucciones_de_estilo: descripcion en lenguaje natural de como debe
+            verse la pagina.
+    &quot;&quot;&quot;
+    global EXTRA_STYLE
+    EXTRA_STYLE = instrucciones_de_estilo
+    description = ask_gemini(DESCRIPTION_PROMPT)
+    has_git = (ROOT / &quot;.git&quot;).exists()
+    page_url = compute_page_url_if_deployed() if has_git else None
+    qr_relpath = &quot;qr.png&quot; if (DOCS / &quot;qr.png&quot;).exists() else None
+    build_site(description, page_url=page_url, qr_relpath=qr_relpath)
+    return &quot;Actualice el estilo de la pagina en docs/index.html.&quot;
+
+
+def desplegar_en_github() -&gt; str:
+    &quot;&quot;&quot;Sube el proyecto a GitHub (creando el repo si hace falta) y publica o
+    actualiza la pagina en GitHub Pages, con su QR.
+
+    Usa esta funcion cuando el usuario pida subir, publicar, desplegar o
+    actualizar la pagina en linea.
+    &quot;&quot;&quot;
+    page_url = run_deploy_pipeline()
+    return f&quot;Despliegue completado. La pagina esta publicada en: {page_url}&quot;
+
+
+def compute_page_url_if_deployed() -&gt; str | None:
+    try:
+        run_cmd([&quot;git&quot;, &quot;remote&quot;, &quot;get-url&quot;, &quot;origin&quot;])
+    except RuntimeError:
+        return None
+    return f&quot;https://{get_owner()}.github.io/{GITHUB_REPO_NAME}/&quot;
+
+
+def chat() -&gt; None:
+    &quot;&quot;&quot;Modo interactivo: habla con el agente (Gemma) desde la terminal.
+
+    El agente puede ademas EJECUTAR acciones reales (no solo responder texto)
+    usando function calling: cambiar el estilo de la pagina y desplegarla.
+    &quot;&quot;&quot;
+    if not GEMINI_API_KEY:
+        print(&quot;Configura GEMINI_API_KEY en .env antes de usar el chat.&quot;)
+        return
+
+    client = get_client()
+    chat_session = client.chats.create(
+        model=GEMINI_MODEL,
+        config=types.GenerateContentConfig(
+            system_instruction=(
+                &quot;Eres el agente de un proyecto universitario de la Electiva &quot;
+                &quot;Tecnologica II. Conoces tu propio codigo (agent.py): llevas &quot;
+                &quot;una bitacora de avance, subes el proyecto a GitHub, lo &quot;
+                &quot;despliegas en GitHub Pages y generas la pagina web del &quot;
+                &quot;proyecto con su QR. Tienes herramientas de verdad para &quot;
+                &quot;cambiar el estilo de la pagina y para desplegarla: cuando &quot;
+                &quot;el usuario pida algo de eso, LLAMA a la herramienta en vez &quot;
+                &quot;de solo decir que lo hiciste. Responde en espanol, breve y claro.&quot;
+            ),
+            tools=[cambiar_estilo_pagina, desplegar_en_github],
+        ),
+    )
+    print(&quot;Chat con el agente (escribe &#x27;salir&#x27; para terminar).\n&quot;)
+    while True:
+        try:
+            user_input = input(&quot;Tu: &quot;).strip()
+        except (EOFError, KeyboardInterrupt):
+            break
+        if user_input.lower() in {&quot;salir&quot;, &quot;exit&quot;, &quot;quit&quot;}:
+            break
+        if not user_input:
+            continue
+        try:
+            response = chat_session.send_message(user_input)
+            text = response.text.strip()
+        except Exception as exc:
+            text = f&quot;(Error al contactar a Gemma: {exc})&quot;
+        print(f&quot;Agente: {text}\n&quot;)
+        log(f&quot;Chat - Usuario dijo: {user_input}&quot;)
+        log(f&quot;Chat - Agente respondio: {text}&quot;)
+
+
 def main() -&gt; None:
     parser = argparse.ArgumentParser()
     parser.add_argument(&quot;--dry-run&quot;, action=&quot;store_true&quot;,
                          help=&quot;Genera la pagina localmente sin tocar git/GitHub.&quot;)
+    parser.add_argument(&quot;--chat&quot;, action=&quot;store_true&quot;,
+                         help=&quot;Habla con el agente por terminal, en vez de correr el flujo completo.&quot;)
     args = parser.parse_args()
+
+    if args.chat:
+        chat()
+        return
 
     log(&quot;Inicio de ejecucion del agente.&quot;)
 
-    description = ask_gemini(
-        &quot;Redacta en un parrafo (maximo 60 palabras) la descripcion de un &quot;
-        &quot;proyecto universitario que conecta un arbol de proceso hecho en &quot;
-        &quot;Obsidian con un agente automatizado en Python que registra avances, &quot;
-        &quot;sube el proyecto a GitHub, lo despliega en GitHub Pages y genera &quot;
-        &quot;una pagina con su propio codigo y un QR.&quot;
-    )
-
     if args.dry_run:
+        description = ask_gemini(DESCRIPTION_PROMPT)
         build_site(description, page_url=None, qr_relpath=None)
         print(&quot;\nListo (dry-run). Abre docs/index.html en tu navegador.&quot;)
         return
 
-    ensure_git_repo()
-    owner = ensure_github_remote()
-    build_site(description, page_url=None, qr_relpath=None)
-    commit_and_push(&quot;Version inicial del agente y la pagina&quot;)
-    page_url = enable_github_pages(owner)
-
-    qr_relpath = generate_qr(page_url)
-    build_site(description, page_url=page_url, qr_relpath=qr_relpath)
-    commit_and_push(&quot;Agrega QR apuntando a la pagina desplegada&quot;)
-
+    page_url = run_deploy_pipeline()
     print(f&quot;\nListo. En unos minutos tu pagina estara en: {page_url}&quot;)
 
 
 if __name__ == &quot;__main__&quot;:
     main()
 </code></pre>
-    </section>
-
-    <section>
-        <h2>QR de esta pagina</h2>
-        <img src="qr.png" alt="QR de esta pagina">
-        <p><a href="https://KeynnerXe.github.io/agente-electiva-tecnologica/">https://KeynnerXe.github.io/agente-electiva-tecnologica/</a></p>
-    </section>
+</section>
+<section>
+<h2>QR de esta pagina</h2>
+<p>El código QR para acceder rápidamente a  todavía no existe; se generará automáticamente después del primer despliegue exitoso.</p>
+</section>
 </div>
 </body>
 </html>
