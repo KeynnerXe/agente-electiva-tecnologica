@@ -16,3 +16,7 @@
 - **2026-09-04 15:45** GitHub Pages activado (POST).
 - **2026-09-04 15:45** QR generado apuntando a https://KeynnerXe.github.io/agente-electiva-tecnologica/.
 - **2026-09-04 15:45** Pagina web generada en docs/index.html.
+- **2026-09-04 15:45** Cambios subidos a GitHub: Agrega QR apuntando a la pagina desplegada
+- **2026-09-04 15:50** Inicio de ejecucion del agente.
+- **2026-09-04 15:50** El remoto 'origin' ya existe.
+- **2026-09-04 15:50** Pagina web generada en docs/index.html.
