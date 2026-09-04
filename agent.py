@@ -440,6 +440,8 @@ def chat() -> None:
             break
         if not user_input:
             continue
+        print("Agente: (trabajando... puede tardar 30-60s si toca llamar a la "
+              "IA y a GitHub, no cierres la terminal)")
         try:
             response = chat_session.send_message(user_input)
             text = response.text.strip()
